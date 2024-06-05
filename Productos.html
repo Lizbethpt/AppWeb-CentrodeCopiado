@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background-color: #0a0218;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+    }
+
+    .navbar-brand {
+      color: #fff;
+      text-decoration: none;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      margin-right: 10px;
+    }
+
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .navbar-nav li {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 20px;
+    }
+    .search-container {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+
+    .search-container input {
+      padding: 6px;
+      border: none;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    .search-container button {
+      padding: 6px 12px;
+      background-color: #031426;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .main {
+      padding-top: 56px; /* Espacio para la barra de navegación fija */
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 10px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .product-card-body {
+      padding: 20px;
+    }
+
+    .product-card-title {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .product-card-text {
+      font-size: 1em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #031426;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .image-container {
+      margin-right: 20px; /* Espacio entre la imagen y el contenido */
+    }
+
+    .image-container img {
+      max-width: 80%; /* Asegura que la imagen no se desborde */
+      display: block; /* Elimina el espacio adicional debajo de la imagen */
+    }
+
+    /* Estilos para el carrito modal */
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    .cart-modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .cart-modal-content h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .cart-total {
+      text-align: right;
+      margin-top: 20px;
+    }
+
+    .close-btn {
+      background-color: #ccc;
+     color: #000;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="logo.png" alt="logo" style="width: 40px; height: 40px;">
+          Centro de Copiado
+        </a>
+        <ul class="navbar-nav">
+          <li><a href="Index.html">Inicio</a></li>
+          <li><a href="Productos.html">Productos</a></li>
+          <li><a href="Procesar_contacto.php">Contacto</a></li>
+          <li class="cart-btn" onclick="toggleCartModal()">
+            <img src="Carrito.png" alt="Carrito" style="width: 40px; height: 40px;">
+            <span class="cart-count" id="cart-count">0</span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="product-container">
+      <!-- Producto 1 -->
+      <div class="product-card">
+        <div class="image-container">
+          <img src="" alt="">
+        </div>
+        <div class="product-card-body">
+          <h3 class="product-card-title">Copias</h3>
+          <p class="product-card-text">$1.00</p>
+          <form>
+            <input type="hidden" name="product_id" value="4">
+            <label for="quantity4">Cantidad:</label>
+            <input type="number" id="quantity4" name="quantity" min="1" value="1" required>
+            <div style="margin-left: -16px;">
+              <label for="imagen">Imagen del Producto:</label>
+              <input type="file" id="imagen" name="imagen" accept="image/*" required>
+            </div>
+            <div style="margin-left: -16px;">
+              <label for="documento">Adjuntar Documento:</label>
+              <input type="file" id="documento" name="documento" accept=".pdf,.doc,.docx">
+              <small>Formatos permitidos: PDF, DOC, DOCX</small>
+            </div>
+            <button type="button" class="btn" onclick="addToCartAndShowModal(event, 4, 'Copias', 1)">Agregar al carrito</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal del carrito de compras -->
+  <div class="cart-modal" id="cart-modal">
+    <div class="cart-modal-content">
+      <h2>Carrito de compras</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="order-details">
+          <!-- Aquí se mostrarán los productos agregados -->
+        </tbody>
+      </table>
+      <p class="cart-total">Total: $<span id="cart-total">0</span></p>
+      <button id="checkout-btn" class="btn" onclick="redirectToPayment()">Finalizar compra</button>
+      <button class="close-btn" onclick="toggleCartModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+       localStorage.clear();
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function addToCartAndShowModal(event, id, name, price) {
+      event.preventDefault();
+      const quantityInput = document.getElementById(`quantity${id}`);
+      const quantity = parseInt(quantityInput.value);
+      const existingItem = cart.find(item => item.id === id);
+
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.push({ id, name, price, quantity });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      toggleCartModal();
+    }
+
+    function toggleCartModal() {
+      const cartModal = document.getElementById('cart-modal');
+      cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function renderCart() {
+      const orderDetails = document.getElementById('order-details');
+      const cartTotal = document.getElementById('cart-total');
+      orderDetails.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.quantity}</td>
+          <td>$${item.price.toFixed(2)}</td>
+          <td>$${(item.price * item.quantity).toFixed(2)}</td>
+        `;
+        orderDetails.appendChild(tr);
+        total += item.price * item.quantity;
+      });
+
+      cartTotal.textContent = total.toFixed(2);
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    function redirectToPayment() {
+      window.location.href = 'Procesar_Pago.php';
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

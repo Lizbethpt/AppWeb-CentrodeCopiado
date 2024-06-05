@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Inicio</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background-color: #00171f;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+    }
+
+    .navbar-brand {
+      color: #fff;
+      text-decoration: none;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      margin-right: 10px; /* Espacio entre la imagen y el texto */
+    }
+
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-nav li {
+      margin-left: 20px;
+    }
+
+    .navbar-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 20px;
+    }
+
+    .user-session {
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .user-session .user-info {
+      margin-left: 20px;
+    }
+
+    .user-dropdown {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 200px;
+      z-index: 1001;
+    }
+
+    .user-dropdown a {
+      display: block;
+      padding: 10px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .user-dropdown a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .main {
+      padding-top: 56px; /* Espacio para la barra de navegación fija */
+    }
+
+    .hero {
+      height: 80vh;
+      background: #007ea7; /* Color de fondo azul */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    .btn {
+      background-color: #00a8e8;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    /* Estilos para la información de contacto */
+    .contact-info {
+      background-color: #ffff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 20px;
+      color: #003459;
+    }
+
+    .contact-info p {
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    .nosotros-info {
+      background-color: #ffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .nosotros-info h2 {
+      color: #003459;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .nosotros-info p {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="logo.png" alt="logo" style="width: 40px; height: 40px;">
+          Centro de Copiado
+        </a>
+        <ul class="navbar-nav">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="Productos.html">Productos</a></li>
+          <li><a href="Procesar_contacto.php">Contacto</a></li>
+          <li><a href="CerrarSesion.php">Cerrar Sesión</a></li>
+        </ul>
+      </div>      
+      </div>      
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="hero">
+      <div>
+        <h1>Bienvenido al Centro de Copiado</h1>
+        <p>Explora nuestros productos y servicios exclusivos.</p>
+        <a class="btn" href="Productos.html">Descubre más</a>
+      </div>
+    </div>
+
+    <div class="nosotros-info">
+      <h2>¿Quiénes somos?</h2>
+      <p>Como centro de copiado, nuestro objetivo es brindar a nuestros clientes servicios de reproducción de documentos eficientes y de alta calidad. Con equipos modernos y personal capacitado, estamos aquí para ayudar con cualquier necesidad de impresión que tengas, ya sea copiar documentos simples o imprimir presentaciones profesionales.</p>
+      <p>Además de copias e impresiones, ofrecemos servicios adicionales como engargolados. Nuestro enfoque es proporcionar soluciones integrales y satisfacer las necesidades de nuestros clientes de manera rápida y eficiente.</p>
+    </div>    
+
+    <!-- Información de contacto -->
+    <div class="contact-info">
+      <h2>Datos de contacto</h2>
+      <p><strong>Nombre de la Empresa:</strong> Centro de Copiado</p>
+      <p><strong>Teléfono:</strong> 123-456-7890</p>
+      <p><strong>Correo electrónico:</strong> centrodecopiado@gmail.com</p>
+      <p><strong>Dirección:</strong> Francisco I. Madero #1113, Monclova, Coahuila, México</p>
+    </div>
+  </main>
+
+  <script>
+    function toggleUserDropdown() {
+      const dropdown = document.getElementById('user-dropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Cerrar el dropdown si se hace clic fuera de él
+    window.onclick = function(event) {
+      if (!event.target.matches('.user-info')) {
+        const dropdowns = document.getElementsByClassName("user-dropdown");
+        for (let i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.style.display === 'block') {
+            openDropdown.style.display = 'none';
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

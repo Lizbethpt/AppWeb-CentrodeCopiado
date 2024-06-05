@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Empleado</title>
+    <!-- Estilos CSS -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #00171f;
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-brand-text {
+            color: #fff; /* Color blanco */
+        }
+
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        .navbar-nav li:last-child {
+            margin-left: 0;
+        }
+
+        .navbar-nav li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #00171f;
+        }
+
+        .summary {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .summary h2 {
+            color: #00171f;
+            margin-bottom: 10px;
+        }
+
+        .orders table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders th, .orders td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .orders th {
+            background-color: #f0f0f0;
+        }
+
+        footer {
+            background-color: #00171f;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a class="navbar-brand" href="#">
+        <img src="logo.png" alt="logo">
+        <span class="navbar-brand-text">Panel de Control del Empleado</span>
+    </a>
+    <nav>
+        <ul class="navbar-nav">
+            <li><a href="Indexempleado.html">Inicio</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="orders">
+            <h2>Lista de Pedidos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Pedido</th>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<!-- JavaScript para hacer la solicitud AJAX y llenar la tabla -->
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'Orders.php', true);
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            var orders = JSON.parse(xhr.responseText);
+            var tableBody = document.querySelector('.orders tbody');
+
+            orders.forEach(function(order) {
+                var row = '<tr>';
+                row += '<td>' + order.id + '</td>';
+                row += '<td>' + order.cliente + '</td>'; // Aquí se muestra el nombre del cliente en lugar del ID
+                row += '<td>' + order.fecha + '</td>';
+                row += '<td>' + order.estado + '</td>';
+                row += '</tr>';
+                
+
+                tableBody.innerHTML += row;
+                
+            });
+        } else {
+            console.error('Error al cargar los datos de los pedidos');
+        }
+    };
+    xhr.send();
+</script>
+</body>
+</html>
